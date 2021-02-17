@@ -1,2 +1,2 @@
 # clida
-clid - console line interface designer application
+clida - console line interface designer application
