@@ -1,0 +1,2 @@
+class WrongValueType(Exception):
+	pass
