@@ -14,6 +14,7 @@ class Visualizer:
     def visualize_dict(cls, dictionary: Dict):
         if not isinstance(dictionary, dict):
             raise WrongValueType('Expected list')
+
         max_line_length = {
             'key': 0,
             'value': 0
@@ -30,11 +31,18 @@ class Visualizer:
             print(cls._VERTICAL + blanks_key(len(key)) + key + blanks_key(len(key)) + cls._VERTICAL + blanks_value(len(value)) + value + blanks_value(len(value)) + cls._VERTICAL)
     
     @classmethod
-    def visualize_list(cls, array: List):
+    def visualize_list(cls, array: List, horizontal=False):
         if not isinstance(array, list):
             raise WrongValueType('Expected list')
-        for element in array:
-            element = str(element)
+        if not horizontal:
+            for element in array:
+                element = str(element)
+                print(cls._PLUS + cls._DASH * (len(element) + 2) + cls._PLUS)
+                print(cls._VERTICAL + cls._BLANK + element + cls._BLANK + cls._VERTICAL)
             print(cls._PLUS + cls._DASH * (len(element) + 2) + cls._PLUS)
-            print(cls._VERTICAL + cls._BLANK + element + cls._BLANK + cls._VERTICAL)
-        print(cls._PLUS + cls._DASH * (len(element) + 2) + cls._PLUS)
+        elif horizontal:
+            head_square_element = [(cls._PLUS + cls._DASH * (len(str(element)) + 2) + cls._PLUS) for element in array]
+            body_square_element = [cls._VERTICAL + cls._BLANK + str(element) + cls._BLANK + cls._VERTICAL for element in array]
+            print(' '.join(head_square_element))
+            print(' '.join(body_square_element))
+            print(' '.join(head_square_element))
