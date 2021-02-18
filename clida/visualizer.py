@@ -1,5 +1,6 @@
 from typing import List, Dict
 import math
+import string
 
 from clida.exceptions import WrongValueType
 
@@ -9,6 +10,13 @@ class Visualizer:
     _DASH = '-'
     _VERTICAL = '|'
     _BLANK = ' '
+    _ALL_FONTS = {
+        'bold': {
+            'head_letter': ['▄▀█','█▄▄','█▀▀','█▀▄','█▀▀','█▀▀','█▀▀','█ █','█','  █','█▄▀','█  ','█▀▄▀█','█▄ █','█▀█','█▀█','█▀█','█▀█','█▀','▀█▀','█ █','█ █','█ █ █','▀▄▀','█▄█','▀█',' '],
+            'body_letter': ['█▀█','█▄█','█▄▄','█▄▀','██▄','█▀ ' ,'█▄█','█▀█','█','█▄█','█ █','█▄▄','█ ▀ █','█ ▀█','█▄█','█▀▀','▀▀█','█▀▄','▄█',' █ ','█▄█','▀▄▀','▀▄▀▄▀','█ █',' █ ','█▄',' ']
+        }
+    }
+    _ALPHABET = string.ascii_lowercase + ' '
 
     @classmethod        
     def visualize_dict(cls, dictionary: Dict):
@@ -46,3 +54,9 @@ class Visualizer:
             print(' '.join(head_square_element))
             print(' '.join(body_square_element))
             print(' '.join(head_square_element))
+
+    @classmethod
+    def visualize_text(cls, string: str, font='bold'):
+        print(' '.join([cls._ALL_FONTS[font]['head_letter'][cls._ALPHABET.index(letter.lower())] for letter in string]))
+        print(' '.join([cls._ALL_FONTS[font]['body_letter'][cls._ALPHABET.index(letter.lower())] for letter in string]))
+        print('\n')
