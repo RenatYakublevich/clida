@@ -56,7 +56,7 @@ class Visualizer:
             print(' '.join(head_square_element))
 
     @classmethod
-    def visualize_text(cls, string: str, font='bold'):
+    def visualize_str(cls, string: str, font='bold'):
         print(' '.join([cls._ALL_FONTS[font]['head_letter'][cls._ALPHABET.index(letter.lower())] for letter in string]))
         print(' '.join([cls._ALL_FONTS[font]['body_letter'][cls._ALPHABET.index(letter.lower())] for letter in string]))
         print('\n')
